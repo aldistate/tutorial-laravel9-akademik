@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('container')
+  <a href="/siswa" class="btn btn-secondary mb-3"> << Kembali</a>
   <h1 class="mb-5">Tambahkan Data Siswa</h1>
   <form action="{{ url('/siswa') }}" method="post">
     @csrf
