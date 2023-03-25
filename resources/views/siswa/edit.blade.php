@@ -16,7 +16,7 @@
     </div>
     <div class="mb-3">
       <label for="alamat" class="form-label">Alamat : </label>
-      <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $siswa->alamat }}">
+      <textarea class="form-control" name="alamat" id="alamat">{{ $siswa->alamat }}</textarea>
     </div>
     <button type="submit" class="btn btn-success">Edit</button>
   </form>
