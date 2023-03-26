@@ -3,7 +3,7 @@
 @section('container')
   <a href="/siswa" class="btn btn-secondary mb-3"> << Kembali</a>
   <h1 class="mb-5">Edit Data Siswa</h1>
-  <form action="{{ url('/siswa/'.$siswa->nomor_induk) }}" method="post">
+  <form action="{{ url('/siswa/'.$siswa->nomor_induk) }}" method="post" enctype="multipart/form-data">
     @method('patch')
     @csrf
     <div class="mb-3">
@@ -17,6 +17,15 @@
     <div class="mb-3">
       <label for="alamat" class="form-label">Alamat : </label>
       <textarea class="form-control" name="alamat" id="alamat">{{ $siswa->alamat }}</textarea>
+    </div>
+    @if ($siswa->foto)
+      <div class="mb-3">
+        <img style="max-width:100px;max-height:100px;" src="{{ url('foto') . "/" . $siswa->foto }}" alt="{{ $siswa->foto }}">
+      </div>
+    @endif
+    <div class="mb-3">
+      <label for="foto" class="form-label">Foto : </label>
+      <input type="file" class="form-control" name="foto" id="foto">
     </div>
     <button type="submit" class="btn btn-success">Edit</button>
   </form>
