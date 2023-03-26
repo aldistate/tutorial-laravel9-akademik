@@ -17,7 +17,7 @@
         <tr>
           <td>
             @if ($s->foto)
-              <img style="max-width: 50px; max-height: 50px" src="{{ url('foto') . "/" . $s->foto }}" alt="{{ $s->foto }}">
+              <img style="max-width:50px;max-height:50px;" src="{{ url('foto') . "/" . $s->foto }}" alt="{{ $s->foto }}">
             @endif
           </td>
           <td>{{ $s->nomor_induk }}</td>

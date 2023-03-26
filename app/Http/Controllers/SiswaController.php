@@ -114,7 +114,7 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nama' => 'required',
-            'alamat' => 'required'
+            'alamat' => 'required',
         ],[
             'nama.required' => 'Nama wajib diisi',
             'alamat.required' => 'Alamat wajib diisi',
@@ -124,6 +124,24 @@ class SiswaController extends Controller
             'nama' => $request->input('nama'),
             'alamat' => $request->input('alamat'),
         ];
+
+        if ($request->hasFile('foto')) {
+            $request->validate([
+                'foto' => 'mimes:png,jpg,jpeg'
+            ], [
+                'foto.mimes' => 'Foto hanya diperbolehkan dengan ekstensi JPG, PNG, atau JPEG'
+            ]);
+
+            $foto_file = $request->file('foto');
+            $foto_ekstensi = $foto_file->extension();
+            $foto_nama = date('ymdhis') . "." . $foto_ekstensi;
+            $foto_file->move(public_path('foto'), $foto_nama);
+
+            $data_foto = Siswa::where('nomor_induk', $id)->first();
+            File::delete(public_path('foto') . '/' . $data_foto->foto);
+
+            $data['foto'] = $foto_nama;
+        }
 
         Siswa::where('nomor_induk', $id)->update($data);
 
