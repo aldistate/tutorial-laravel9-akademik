@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::get('/', function () {
 });
 
 Route::resource('/siswa', SiswaController::class);
+
+Route::get('/login', [SessionController::class, 'index'])->name('indexLogin');
+Route::post('/login', [SessionController::class, 'login'])->name('login');
