@@ -8,6 +8,9 @@
   <title>Aplikasi Sekolah</title>
 </head>
 <body>
+  @if (Auth::check())
+    @include('layout.header')
+  @endif
   <div class="container py-5 px-4">
     @include('message.message')
     @yield('container')

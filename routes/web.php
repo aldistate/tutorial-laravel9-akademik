@@ -23,3 +23,4 @@ Route::resource('/siswa', SiswaController::class);
 
 Route::get('/login', [SessionController::class, 'index'])->name('indexLogin');
 Route::post('/login', [SessionController::class, 'login'])->name('login');
+Route::get('/login/logout', [SessionController::class, 'logout'])->name('logout');
