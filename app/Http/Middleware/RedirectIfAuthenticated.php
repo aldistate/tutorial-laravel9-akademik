@@ -23,10 +23,9 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return redirect('/siswa')->withErrors('Maaf, anda sudah login atas nama ' . Auth::user()->name);
             }
         }
-
         return $next($request);
     }
 }

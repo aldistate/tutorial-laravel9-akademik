@@ -19,11 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/siswa', SiswaController::class);
+Route::resource('/siswa', SiswaController::class)->middleware('isLogin');
 
-Route::get('/login', [SessionController::class, 'index'])->name('indexLogin');
-Route::post('/login', [SessionController::class, 'login'])->name('login');
+Route::middleware('guest')->group(function() {
+    Route::get('/login', [SessionController::class, 'index'])->name('indexLogin');
+    Route::post('/login', [SessionController::class, 'login'])->name('login');
+    Route::get('/register', [SessionController::class, 'indexRegis'])->name('indexRegis');
+    Route::post('/register/create', [SessionController::class, 'storeRegis'])->name('storeRegis');
+});
 Route::get('/login/logout', [SessionController::class, 'logout'])->name('logout');
-
-Route::get('/register', [SessionController::class, 'indexRegis'])->name('indexRegis');
-Route::post('/register/create', [SessionController::class, 'storeRegis'])->name('storeRegis');
